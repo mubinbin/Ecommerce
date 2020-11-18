@@ -4,6 +4,7 @@ import RegAndLogin from "./views/RegAndLogin";
 import ProductsList from "./views/ProductsList";
 import {Router} from "@reach/router";
 import ProvideAuth from "./components/ProvideAuth";
+import ProductDetail from "./views/ProductDetail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Router>
           <RegAndLogin path="/"/>
           <ProductsList path="/products"/>
+          <ProductDetail path="/products/:id"/>
         </Router>
       </ProvideAuth>
     </div>

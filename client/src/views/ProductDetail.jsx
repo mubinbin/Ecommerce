@@ -1,7 +1,9 @@
 import React, {useState, useEffect, useContext} from "react";
 import axios from "axios";
 import AuthContext from "../components/AuthContext";
-nav
+import Rating from "../components/Rating/Rating";
+
+
 
 const ProductDetail = props =>{
 
@@ -21,8 +23,8 @@ const ProductDetail = props =>{
         <h3>{product.titile}</h3>
         <p>${product.price}</p>
         <p>{product.desc}</p>
-        <p>Rating: {product.numReviews}</p>
-        
+        <p>Rating: {product.numReviews} reviews</p>
+        <Rating product={product}/>
         </>
     );
 };

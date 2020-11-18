@@ -61,7 +61,7 @@ const Loggedin = props => {
         {
             products.map((product)=>{
                 return (
-                    <Link to={"/products/"+product._id}><h3 key={product._id}>
+                    <Link key={product._id} to={"/products/"+product._id}><h3 >
                         {product.title}
                     </h3></Link>
                 );
