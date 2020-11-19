@@ -86,17 +86,18 @@ module.exports.login = async(req, res) => {
     .cookie("usertoken", userToken, {
         httpOnly: true
     })
-    .json({msg: "success!"});
+    .json(loggedInUser);
 };
 
 module.exports.logout = async(req, res) => {
+    res.json()
     res.clearCookie("usertoken");
     res.sendStatus(200);
 };
 
 module.exports.oneUser = async(req, res) => {
     try {
-        const oneUser = await findById({_id: req.params.id})
+        const oneUser = await User.findById({_id: req.params.id})
         return res.json(oneUser);
     } catch (error) {
         return res.json(error);

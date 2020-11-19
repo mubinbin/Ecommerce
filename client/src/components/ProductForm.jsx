@@ -32,10 +32,28 @@ export default function ProductForm(props) {
                 <span className="col-sm-2"> </span>
                 <TextField
                 margin="dense"
-                name="price"
-                label="Price ($US Dollar)"
+                name="enddate"
+                label="Auction End Time"
+                type="datetime-local"
+                defaultValue="2020-12-31T10:30"
+                onChange={onChangeHandler}
+                />
+                <span className="col-sm-2"> </span>
+                <TextField
+                margin="dense"
+                name="startBid"
+                label="Starting Bid ($US Dollar)"
                 type="text"
-                value={product.price}
+                value={product.startBid}
+                onChange={onChangeHandler}
+                />
+                <span className="col-sm-2"> </span>
+                <TextField
+                margin="dense"
+                name="eachBid"
+                label="Bid Increment($US Dollar)"
+                type="text"
+                value={product.increment}
                 onChange={onChangeHandler}
                 />
             </div>
@@ -57,9 +75,11 @@ export default function ProductForm(props) {
             onChange={onChangeHandler}
             fullWidth
             />
-            <Button onClick={props.handleClose} variant="contained" color="secondary">Cancle</Button>
-            <span className="col-sm-2"> </span>
-            <Button type="submit" variant="contained" color="primary">{props.btn}</Button>
+            <div style={{padding:"15px 15px 15px 0"}}>
+                <Button type="submit" variant="contained" color="primary">{props.btn}</Button>
+                <span className="col-sm-2"> </span>
+                <Button onClick={props.handleClose} variant="contained" color="secondary">Cancle</Button>
+            </div>
         </form>
     )
 

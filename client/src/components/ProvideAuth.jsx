@@ -5,18 +5,16 @@ import {navigate} from "@reach/router";
 
 const ProvideAuth = props => {
 
-    const [loggedin, setLoggedin] = useState(false);
     const [err, setErr] = useState({});
 
     const login= inputs => {
         axios.post("http://localhost:8000/api/login", inputs, { withCredentials: true })
         .then(res => {
-            // console.log(res.data);
             if(res.data.errors){
                 setErr(res.data.errors);
             }else{
                 console.log("Logged in succefully")
-                setLoggedin(true);
+                localStorage.setItem("loggedin", res.data._id);
                 navigate("/products");
             }
         })
@@ -26,14 +24,14 @@ const ProvideAuth = props => {
     const logout = e => {
         axios.get("http://localhost:8000/api/logout", {withCredentials:true})
         .then(res=>{
-            setLoggedin(false);
+            localStorage.clear()
             navigate("/");
         })
         .catch(err=>console.log("Error: " + err));
     };
 
     return(
-        <AuthContext.Provider value={{err, loggedin, setLoggedin, login, logout}} >
+        <AuthContext.Provider value={{err, login, logout}} >
             {props.children}
         </AuthContext.Provider>
     );

@@ -6,4 +6,5 @@ module.exports = app => {
     app.get("/api/comments/:id", CommentController.commentList);
     app.put("/api/comments/:id", authenticate, CommentController.editComment);
     app.delete("/api/comments/:id", authenticate, CommentController.deleteComment);
+    app.get("/api/comments", CommentController.allComments);
 };

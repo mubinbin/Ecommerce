@@ -7,7 +7,8 @@ const options = {
     cors:true,
     origin:["*:*"]
 };
-
+const Comment = require("./server/models/comment.model");
+const Product = require("./server/models/product.model");
 require('dotenv').config();
 
 require("./server/config/mongoose.config")
@@ -25,7 +26,14 @@ const io = require("socket.io")(server, options);
 
 io.on("connection", socket=> {
     console.log(socket.id);
-    console.log(msg);
-    
+    // console.log(msg);
+    socket.on("createComment", msg=>{
+        const comment = new Comment(msg);
+        io.emit("sendCommentToClient", comment);
+    })
+    socket.on("updateProductReview", msg=>{
+        const product = new Product(msg);
+        io.emit("sendUpdatedProductToClient", product);
+    })
 
 });

@@ -9,10 +9,19 @@ module.exports.newProduct = async(req, res) => {
     }
 };
 
-module.exports.allProducts = async(req, res) => {
+module.exports.allActiveProducts = async(req, res) => {
     try{
-        const allProducts = await Product.find();
-        return res.json(allProducts);
+        const allActiveProducts = await Product.find({enddate: {$gte: Date.now()}});
+        return res.json(allActiveProducts);
+    }catch(err){
+        return res.json(err);
+    }
+};
+
+module.exports.allPastProducts = async(req, res) => {
+    try{
+        const allActiveProducts = await Product.find({enddate: {$lt: Date.now()}});
+        return res.json(allActiveProducts);
     }catch(err){
         return res.json(err);
     }
@@ -38,7 +47,7 @@ module.exports.deleteProduct = async (req, res) => {
 
 module.exports.editProduct = async (req, res) => {
     try {
-        const editedProduct = await Product.findOneAndUpdate({_id: req.params.id}, req.body, {new: true});
+        const editedProduct = await Product.findByIdAndUpdate({_id: req.params.id}, req.body, {new:true});
         return res.json(editedProduct);
     } catch (error) {
         return res.json(error);

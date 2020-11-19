@@ -31,8 +31,8 @@ const RegForm = props => {
             if(res.data.errors){
                 setErr(res.data.errors);
             }else{
-                console.log("register successfully")
-                context.setLoggedin(true);
+                console.log("register successfully");
+                localStorage.setItem("loggedin", true);
                 navigate("/products");
             }
         })
