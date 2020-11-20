@@ -3,8 +3,9 @@ const {authenticate} = require("../config/jwt.config");
 
 module.exports = app => {
     app.post("/api/users/register", UserController.register);
-    app.get("/api/users", authenticate, UserController.allUsers);
+    app.get("/api/users", UserController.allUsers);
     app.post("/api/login", UserController.login);
     app.get("/api/logout", UserController.logout);
-    app.get("/api/users/:id", authenticate, UserController.oneUser);
+    app.get("/api/users/:id", UserController.oneUser);
+    app.delete("/api/users/:id", UserController.deleteUser);
 };

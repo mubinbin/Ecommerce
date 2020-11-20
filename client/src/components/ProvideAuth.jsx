@@ -15,7 +15,7 @@ const ProvideAuth = props => {
             }else{
                 console.log("Logged in succefully")
                 localStorage.setItem("loggedin", res.data._id);
-                navigate("/products");
+                navigate("/");
             }
         })
         .catch(err=>console.log("Error: " + err));

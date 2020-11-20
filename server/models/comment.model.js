@@ -11,7 +11,6 @@ const CommentSchema = new mongoose.Schema(
             type: Number,
             default: 0
         },
-        reply: Array,
         _creator: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "User"

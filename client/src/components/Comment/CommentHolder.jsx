@@ -1,32 +1,47 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import moment from "moment";
 import Rating from "../Rating/Rating";
+import axios from "axios";
+import "./CommentHolder.css"
 
 
 const CommentHolder = props =>{
+
+    const [user, setUser] = useState({});
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/users/" + props.comment._creator)
+        .then(res=>{
+            setUser(res.data);
+        })
+        .catch(err=>console.log(err));
+    }, [props.comment._creator]);
 
     const createdTime = new Date(props.comment.createdAt).toLocaleString("en-US", {dateStyle: "short",timeStyle: "short"});
 
     return(
         <div className="commentHolder">
             <div className="commentHeader">
-                <h3>{props.comment._creator.username}</h3>
-                {
-                    props.comment.rating !==0 &&
-                    <Rating product={props.comment}/>
-                }
+                <div className="name-time">
+                    <div>{user===null? <b>Deleted user</b>  : <b>{user.username}</b>}</div>
+                    <div>
+                        <small>{moment(props.comment.createdAt).fromNow()}, </small>
+                        <small> {createdTime}</small>
+                    </div>
+                </div>
+                <div>
+                    {
+                        props.comment.rating !==0 &&
+                        (
+                        <>
+                        
+                        <Rating product={props.comment}/>
+                        </>
+                        )
+                    }
+                </div>
             </div>
-            <span> {moment(props.comment.createdAt).fromNow()}</span>
-            <span>{createdTime} </span>
             <p>{props.comment.content}</p>
-            <div className="commentFooter">
-                <div className="footer-1">
-                    <small>reply</small>
-                </div>
-                <div className="footer-2">
-                    <small>delete</small>
-                </div>
-            </div>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 const User = require("../models/user.model");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const { model } = require("../models/user.model");
 
 module.exports.register = async(req, res) => {
     try{
@@ -89,16 +90,24 @@ module.exports.login = async(req, res) => {
     .json(loggedInUser);
 };
 
-module.exports.logout = async(req, res) => {
-    res.json()
+module.exports.logout = (req, res) => {
+    res.json();
     res.clearCookie("usertoken");
-    res.sendStatus(200);
 };
 
 module.exports.oneUser = async(req, res) => {
     try {
         const oneUser = await User.findById({_id: req.params.id})
         return res.json(oneUser);
+    } catch (error) {
+        return res.json(error);
+    }
+};
+
+module.exports.deleteUser = async(req, res) => {
+    try {
+        const result = await User.deleteOne({_id: req.params.id});
+        return res.json(result);
     } catch (error) {
         return res.json(error);
     }

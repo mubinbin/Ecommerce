@@ -3,6 +3,8 @@ import React, {useState, useEffect} from "react";
 import Logout from "../components/RegLoginLogout/Logout";
 import Modal from "../components/Modal";
 import {Link} from "@reach/router";
+import ItemCard from "../components/ItemCards/ItemCard";
+import "./ProductList.css"
 
 
 const Loggedin = props => {
@@ -41,10 +43,19 @@ const Loggedin = props => {
     const addProduct = newProduct => {
         axios.post("http://localhost:8000/api/products/new", newProduct, {withCredentials: true})
         .then(res => {
-            setActiveProducts([
-                ...activeProducts,
-                res.data
-            ]);
+            var newProductEndDate = new Date(newProduct.enddate);
+
+            if(newProductEndDate >= Date.now()){
+                setActiveProducts([
+                    ...activeProducts,
+                    res.data
+                ]);
+            }else{
+                setPastProducts([
+                    ...pastProducts,
+                    res.data
+                ]);
+            }
         })
         .catch(err => console.log("Error "+ err));
     };
@@ -52,11 +63,11 @@ const Loggedin = props => {
     return(
         
         <>
-        <div className="d-flex justify-content-around mt-2">
+        <div className="d-flex justify-content-around p-2">
         {
             loggedin &&
             <Modal
-            action="Add your product"
+            action="Add your item"
             modalTitle="New Product"
             create={createProduct}
             callBack={addProduct}
@@ -65,29 +76,31 @@ const Loggedin = props => {
         }
         {
             loggedin?
-            <Logout/>:<Link className="btn btn-info" to="/">Register Now</Link>
+            <Logout/>:
+            (
+                <>
+                <h2>Welcome to RealTimeBid!</h2>
+                <Link className="btn btn-info" to="/reg">Register or Log in to bid now!!</Link>
+                </>
+            )
         }
         </div>
-
-        <div className="list-left">
+        <h3>Active Items</h3>
+        <div className="list-grid">
         {
-            activeProducts.map((product)=>{
+            activeProducts.map((product, i)=>{
                 return (
-                    <Link key={product._id} to={"/products/"+product._id}><h5 >
-                        {product.title}
-                    </h5></Link>
+                    <ItemCard key={i} active="active" product={product}/>
                 );
             })
         }
         </div>
-        <div className="list-right">
+        <h3>Bid Ended</h3>
+        <div className="list-grid">
         {
-            pastProducts.map((product)=>{
+            pastProducts.map((product, i)=>{
                 return (
-                    // <Link key={product._id} to={"/products/"+product._id}><h5 >
-                    //     {product.title}
-                    // </h5></Link>
-                    <h5 key={product._id}>{product.title}</h5>
+                    <ItemCard key={i} active="non-active" product={product}/>
                 );
             })
         }

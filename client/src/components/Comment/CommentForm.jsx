@@ -35,8 +35,9 @@ const CommentForm = props => {
     };
 
     return(
-        <div>
+        <div style={{margin: "15px 0"}}>
             <form onSubmit={onSubmitHandler}>
+                <span>Rate this item:</span>
                 <div className="reviews">
                     <input type="radio" name="rating" id="rd-5" value={5} onChange={onChangeHandler}/>
                     <label htmlFor="rd-5" className="fas fa-star"></label>
@@ -54,19 +55,23 @@ const CommentForm = props => {
                     <label htmlFor="rd-1" className="fas fa-star"></label>
                 </div>
 
-                <TextField
-                    required
-                    id="standard-multiline-flexible"
-                    label="Required"
-                    name="content"
-                    multiline
-                    rowsMax={4}
-                    placeholder="Enter your comment"
-                    variant="outlined"
-                    value={comment.content}
-                    onChange={onChangeHandler}
-                />
-                <div>
+                <div className="text-field">
+                    <TextField
+                        required
+                        id="standard-multiline-flexible"
+                        label="Required"
+                        name="content"
+                        multiline
+                        fullWidth
+                        rows={4}
+                        placeholder="Enter your comment"
+                        variant="outlined"
+                        value={comment.content}
+                        onChange={onChangeHandler}
+                    />
+                </div>
+
+                <div className="button">
                     <Button type="submit" variant="contained" color="primary">{props.btn}</Button>
                 </div>
             </form>

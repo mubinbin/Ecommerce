@@ -1,0 +1,65 @@
+.header{
+    display: flex;
+    padding: 8px 0;
+    justify-content: space-between;
+
+}
+
+.main-content{
+    display: flex;
+    /* justify-content: space-between; */
+}
+
+.main-content .left img{
+    width: 400px;
+    height: 500px;
+}
+
+.main-content .right{
+    margin-left: 100px;
+}
+
+.left{
+    height: 500px;
+}
+
+.right p{
+    padding: 10px 0 0 20px;
+}
+
+.bid-info{
+    margin: 15px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bid-info .price span{
+    color: crimson;
+}
+.bid-info .time span{
+    color: rgb(49, 49, 253)
+}
+
+.chat-window{
+    width: 100%;
+    height: 350px;
+    border: 1px solid #999;
+    border-radius: 5px;
+    padding: 10px 20px;
+    overflow: auto;
+}
+
+.bid-form{
+    /* width: 150px; */
+    height: 80px;
+    position: fixed;
+    top: 100px;
+    left: 530px;
+}
+.bid-form input{
+    vertical-align: bottom;
+    margin-left: 10px;
+}
+.bid-form button{
+    border-radius: 50%;
+}

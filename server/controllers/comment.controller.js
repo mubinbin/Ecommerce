@@ -29,7 +29,7 @@ module.exports.editComment = async (req, res) => {
 
 module.exports.commentList = async (req, res) => {
     try {
-        const someComments = await Comment.find({product_id: req.params.id}).sort({updatedAt: -1});
+        const someComments = await Comment.find({product_id: req.params.id}).sort({createdAt: 1});
         return res.json(someComments);
     } catch (error) {
         return res.json(error);

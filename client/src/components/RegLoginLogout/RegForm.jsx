@@ -1,7 +1,6 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
 import axios from "axios";
 import {navigate} from "@reach/router"
-import AuthContext from "../AuthContext";
 
 const RegForm = props => {
     const initialState = {
@@ -11,7 +10,6 @@ const RegForm = props => {
         confirmPassword:""
     };
     
-    const context = useContext(AuthContext);
     const [user, setUser] = useState(initialState);
     const [err, setErr] = useState({});
 
@@ -24,7 +22,6 @@ const RegForm = props => {
 
     const onSumitHandler = (e) => {
         e.preventDefault();
-        console.log(user)
         axios.post("http://localhost:8000/api/users/register", user, { withCredentials: true })
         .then(res => {
             console.log(res.data)
@@ -32,8 +29,8 @@ const RegForm = props => {
                 setErr(res.data.errors);
             }else{
                 console.log("register successfully");
-                localStorage.setItem("loggedin", true);
-                navigate("/products");
+                localStorage.setItem("loggedin", res.data._id);
+                navigate("/");
             }
         })
         .catch(err=>console.log("Error: " + err));
