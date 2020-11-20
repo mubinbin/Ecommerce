@@ -39,7 +39,7 @@ const RegForm = props => {
 
     return(
         <>
-        <form style={{textAlign: "center"}} onSubmit={onSumitHandler}>
+        <form style={{textAlign: "center", margin:"auto"}} onSubmit={onSumitHandler}>
             <div className="form-group col-8">
                 <label htmlFor="username">Username: </label>
                 <input type="text" className="form-control" name="username" value={user.username} onChange={onChangeHandler}/>
@@ -61,7 +61,7 @@ const RegForm = props => {
                 {err.confirmPassword && <small className="text-danger">{err.confirmPassword.message}</small>}
             </div>
             <div className="form-group col-8">
-                <input className="btn btn-sm btn-primary" type="submit" value="Register"/>
+                <input className="btn btn-primary" type="submit" value="Register"/>
             </div>
         </form>
         </>

@@ -139,7 +139,7 @@ const ProductDetail = props =>{
             <>
             <div className="header">
                 <h2>Welcome, {user.username}!</h2>
-                <Link className="text-uppercase" to="/">Back to item list</Link>
+                <Link className="text-uppercase" to="/"><p> Back to item list</p></Link>
                 <Logout />
             </div>
             </>
@@ -183,8 +183,8 @@ const ProductDetail = props =>{
             (loggedin && isActive()) &&
             <form className="bid-form" onSubmit={placeBid} >
                 {error && <p><small className="text-danger">{error}</small></p>}
+                <input className="form-control col-sm" type="number" placeholder="Enter bid" name="eachBid" onChange={e => setEachBid(e.target.value)}/>
                 <button type="submit" className="btn btn-danger">BID</button>
-                <input style={{width:"150px"}} className="form-control col-sm d-inline" type="number" placeholder="Enter your bid" name="eachBid" onChange={e => setEachBid(e.target.value)}/>
             </form>
         }
         <div ref={commentsEndRef} className="chat-window">

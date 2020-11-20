@@ -4,3 +4,29 @@
     grid-template-columns: repeat(3, 1fr);
     row-gap: 30px;
 }
+.welcome-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+
+@media screen and (max-width: 1199px){
+    .list-grid{
+        grid-template-columns: repeat(2, 1fr);
+        justify-content: center;
+        justify-items: center;
+    }
+}
+
+@media screen and (max-width: 750px){
+    .welcome-header{
+        display: block;
+    }
+    .list-grid{
+        display: block;
+    }
+    .list-grid .each-item{
+        margin: 15px 0;
+    }
+}

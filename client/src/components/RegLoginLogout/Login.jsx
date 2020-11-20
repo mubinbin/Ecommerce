@@ -24,7 +24,7 @@ const Login = props => {
 
     return(
         <>
-        <form style={{textAlign: "center"}} className="form-group" onSubmit={onSubmitHandler}>
+        <form style={{textAlign: "center", margin:"auto"}} className="form-group" onSubmit={onSubmitHandler}>
             <div className="form-group col-8">
                 <label htmlFor="email">Email: </label>
                 <input type="text" className="form-control" name="email" onChange={onChangeHandler}/>
@@ -37,7 +37,7 @@ const Login = props => {
                 {context.err.emailLogin && <small className="text-danger">{context.err.emailLogin.message}</small>}
             </div>
             <div className="form-group col-8">
-                <input className="btn btn-sm btn-primary" type="submit" value="Log in"/>
+                <input className="btn btn-success" type="submit" value="Log in"/>
             </div>
         </form>
         </>

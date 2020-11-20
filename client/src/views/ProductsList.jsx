@@ -63,24 +63,28 @@ const Loggedin = props => {
     return(
         
         <>
-        <div className="d-flex justify-content-around p-2">
-        {
-            loggedin &&
-            <Modal
-            action="Add your item"
-            modalTitle="New Product"
-            create={createProduct}
-            callBack={addProduct}
-            initialState={initialState}
-            />
-        }
+        <div className="welcome-header">
         {
             loggedin?
-            <Logout/>:
             (
                 <>
-                <h2>Welcome to RealTimeBid!</h2>
-                <Link className="btn btn-info" to="/reg">Register or Log in to bid now!!</Link>
+                <Modal
+                action="Add your item"
+                modalTitle="New Product"
+                create={createProduct}
+                callBack={addProduct}
+                initialState={initialState}
+                />
+                <Logout/> 
+                </>
+            )
+            :
+            (
+                <>
+                    <h2>Welcome to RealTimeBid!</h2>
+                <div>
+                    <Link className="btn btn-info" to="/reg">Register or Log in to bid now!!</Link>
+                </div>
                 </>
             )
         }
@@ -90,7 +94,9 @@ const Loggedin = props => {
         {
             activeProducts.map((product, i)=>{
                 return (
-                    <ItemCard key={i} active="active" product={product}/>
+                    <div className="each-item">
+                        <ItemCard key={i} active="active" product={product}/>
+                    </div>
                 );
             })
         }
@@ -100,7 +106,9 @@ const Loggedin = props => {
         {
             pastProducts.map((product, i)=>{
                 return (
-                    <ItemCard key={i} active="non-active" product={product}/>
+                    <div className="each-item">
+                        <ItemCard key={i} active="non-active" product={product}/>
+                    </div>
                 );
             })
         }

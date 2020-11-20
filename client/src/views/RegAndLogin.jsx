@@ -8,15 +8,10 @@ const RegAndLogin = props => {
 
 
     return(
-        <div className="row">
-            <div className="col-5">
-                <RegForm/>
-            </div>
-            <div className="col-2"></div>
-            <div className="col-5">
-                <Login/>
-            </div>
-        </div>
+        <>
+            <RegForm/>
+            <Login/>
+        </>
         
     );
 };
