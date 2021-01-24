@@ -31,7 +31,7 @@ const Login = props => {
             </div>
             <div className="form-group col-8">
                 <label htmlFor="password">Password: </label>
-                <input type="text" className="form-control" name="password" onChange={onChangeHandler}/>
+                <input type="password" className="form-control" name="password" onChange={onChangeHandler}/>
             </div>
             <div className="form-group col-8">
                 {context.err.emailLogin && <small className="text-danger">{context.err.emailLogin.message}</small>}

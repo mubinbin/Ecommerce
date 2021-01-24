@@ -52,12 +52,12 @@ const RegForm = props => {
             </div>
             <div className="form-group col-8">
                 <label htmlFor="password">Password: </label>
-                <input type="text" className="form-control" name="password" value={user.password} onChange={onChangeHandler}/>
+                <input type="password" className="form-control" name="password" value={user.password} onChange={onChangeHandler}/>
                 {err.password && <small className="text-danger">{err.password.message}</small>}
             </div>
             <div className="form-group col-8">
                 <label htmlFor="confirmPassword">Confirm Password: </label>
-                <input type="text" className="form-control" name="confirmPassword" value={user.confirmPassword} onChange={onChangeHandler}/>
+                <input type="password" className="form-control" name="confirmPassword" value={user.confirmPassword} onChange={onChangeHandler}/>
                 {err.confirmPassword && <small className="text-danger">{err.confirmPassword.message}</small>}
             </div>
             <div className="form-group col-8">
