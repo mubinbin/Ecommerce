@@ -17,7 +17,7 @@ const ProductDetail = props =>{
     const [comments, setComments] = useState([]);
     const [loggedin] = useState(()=> localStorage.getItem("loggedin"));
     const [loaded, setLoaded] = useState(false);
-    const [socket] = useState(() => io(":8000"));
+    const [socket] = useState(() => io(":80"));
     const [eachBid, setEachBid] = useState(0);
     const [error, setError] = useState("");
     const [userId] = useState(localStorage.getItem("loggedin"))
