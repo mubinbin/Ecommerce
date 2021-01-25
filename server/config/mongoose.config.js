@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost/mern_project_db', {
+mongoose.connect('mongodb://auctionapp_mongodb_container/mern_project_db', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,

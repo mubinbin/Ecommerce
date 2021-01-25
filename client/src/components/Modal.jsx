@@ -46,14 +46,6 @@ export default function Modal(props) {
             />
             
             </DialogContent>
-            {/* <DialogActions>
-            <Button autoFocus onClick={handleClose} color="primary">
-                Cancle
-            </Button>
-            <Button type="submit" color="primary" autoFocus>
-                {props.create? "Add":"Update"}
-            </Button>
-            </DialogActions> */}
         </Dialog>
         </div>
     );

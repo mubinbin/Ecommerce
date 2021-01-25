@@ -87,7 +87,6 @@ const ProductDetail = props =>{
         axios.put("http://localhost:8000/api/products/"+props.id, updated, {withCredentials: true})
         .then(res=>{
             socket.emit("updateProductReview", res.data);
-            
         })
         .catch(err=>console.log("Error: "+err));
     };

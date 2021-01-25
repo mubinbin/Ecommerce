@@ -1,0 +1,41 @@
+version: '3.7'
+
+services:
+  auctionapp_mongodb_container:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    volumes:
+      - auctionapp-data:/data/db
+    networks:
+      - backend
+
+  auctionapp_server_container:
+    image: bunxiibun/auctionapp_server:1.0
+    restart: always
+    ports:
+      - 8000:8000
+    depends_on:
+      - auctionapp_mongodb_container
+    networks:
+      - backend
+      - frontend
+  
+  auctionapp_client_container:
+    image: bunxiibun/auctionapp_client:1.0
+    restart: always
+    ports:
+      - 80:80
+    depends_on:
+      - auctionapp_server_container
+    networks:
+      - frontend
+
+volumes:
+  auctionapp-data:
+    driver: local
+
+networks:
+  backend:
+  frontend:

@@ -1,0 +1,5 @@
+client
+.dockerignore
+Dockerfile
+ecommerce.yml
+node_modules
