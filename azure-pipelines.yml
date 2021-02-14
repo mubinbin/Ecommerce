@@ -1,0 +1,45 @@
+# Docker
+# Build a Docker image
+# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  tag: '$(Build.BuildId)'
+
+stages:
+- stage: Build
+  displayName: Build image
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: ubuntu-latest
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'My DockerHub'
+        repository: 'bunxiibun / auctionapp_server'
+        command: 'buildAndPush'
+        Dockerfile: './Dockerfile'
+        tags: |
+          $(tag)
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'My DockerHub'
+        repository: 'bunxiibun / auctionapp_client'
+        command: 'buildAndPush'
+        Dockerfile: 'client/Dockerfile'
+        tags: |
+          $(tag)
+    - task: DockerCompose@0
+      inputs:
+        containerregistrytype: 'Container Registry'
+        dockerRegistryEndpoint: 'My DockerHub'
+        dockerComposeFile: '**/ecommerce.yml'
+        action: 'Run a Docker Compose command'
+        dockerComposeCommand: 'up'
